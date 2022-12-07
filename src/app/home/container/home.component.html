@@ -1,0 +1,34 @@
+{{ (homeService.loading$ | async) ? "carregando" : "" }}
+<main class="container mx-auto px-4">
+  <ul class="showcase grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <li
+      class="product shadow-md hover:shadow-xl p-4 flex flex-col relative"
+      *ngFor="let product of (homeService.products$ | async)?.products"
+    >
+      <img
+        *ngIf="product.images"
+        [src]="product.images[0]"
+        [alt]="product.description"
+        class="product__image h-64 object-scale-down mb-4"
+      />
+      <span class="product__previous-price text-sm line-through text-gray-500">
+        {{
+          (product.discountPercentage / 100) * product.price + product.price
+            | currency
+        }}
+      </span>
+      <div class="flex items-center gap-2">
+        <h3 class="product__current-price font-semibold text-xl">
+          {{ product.price | currency }}
+        </h3>
+        <span class="text-green-500 font-medium text-xs"
+          >{{ product.discountPercentage }}% OFF</span
+        >
+      </div>
+      <h2 class="product__title text-xs">{{ product.title }}</h2>
+      <div class="product__description hover-text mt-4">
+        {{ product.description }}
+      </div>
+    </li>
+  </ul>
+</main>
