@@ -1,4 +1,6 @@
-{{ (homeService.loading$ | async) ? "carregando" : "" }}
+<div class="text-sm p-8 mx-auto">
+  {{ (homeService.loading$ | async) ? "carregando" : "" }}
+</div>
 <main class="container mx-auto px-4">
   <ul class="showcase grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     <li
